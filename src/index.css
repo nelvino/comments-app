@@ -29,7 +29,7 @@ textarea {
 button {
   font: inherit;
   border: initial;
-  outline: initial; /* create alternative for focus state */
+  outline: initial;
   background-color: initial;
 }
 
