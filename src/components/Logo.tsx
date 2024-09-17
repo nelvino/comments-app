@@ -1,7 +1,7 @@
 export default function Logo() {
   return (
-    <a href="/" className="logo">
-      <img src="/NicoLogo.png" alt="logo" />
+    <a href={`${import.meta.env.BASE_URL}`} className="logo">
+      <img src={`${import.meta.env.BASE_URL}img/NicoLogo.png`} alt="logo" />
     </a>
   );
 }
