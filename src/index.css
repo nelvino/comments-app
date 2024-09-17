@@ -160,6 +160,7 @@ h1 *::selection {
   position: relative;
   z-index: 1;
   backface-visibility: hidden;
+  padding-top: 10px;
   transform: translateZ(0);
 }
 
