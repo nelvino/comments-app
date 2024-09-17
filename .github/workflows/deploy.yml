@@ -3,7 +3,7 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # Triggers the workflow on push to the main branch
+      - main  # Triggers the workflow when you push to the main branch
 
 jobs:
   build:
@@ -26,8 +26,11 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          npm run deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git clone --depth=1 --branch=gh-pages https://github.com/${{ github.repository }} gh-pages
+          rsync -av --delete dist/ gh-pages/
+          cd gh-pages
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
